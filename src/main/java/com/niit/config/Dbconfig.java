@@ -18,10 +18,16 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.niit.dao.BlogDAO;
 import com.niit.dao.BlogDAOImpl;
-import com.niit.dao.ForumDAO;
-import com.niit.dao.ForumDAOImpl;
 import com.niit.model.Blog;
 import com.niit.model.Forum;
+import com.niit.model.Job;
+import com.niit.model.UserDetails;
+import com.niit.dao.ForumDAO;
+import com.niit.dao.ForumDAOImpl;
+import com.niit.dao.JobDAO;
+import com.niit.dao.JobDAOImpl;
+import com.niit.dao.UserDAO;
+import com.niit.dao.UserDAOImpl;
 
 @Configuration
 @EnableTransactionManagement
@@ -83,4 +89,20 @@ public class Dbconfig
 		System.out.println("Forum object Created");
 		return new ForumDAOImpl(sessionFactory);
 	}
+	@Autowired
+	@Bean(name = "userDAO")
+	public UserDAO getUserDAO(SessionFactory sessionFactory)
+	{
+		System.out.println("User object Created");
+		return new UserDAOImpl(sessionFactory);
+	}
+	
+	@Autowired
+	@Bean(name = "jobDAO")
+	public JobDAO getJobDAO(SessionFactory sessionFactory)
+	{
+		System.out.println("Job object created");
+		return new JobDAOImpl(sessionFactory);
+	}
+
 }
